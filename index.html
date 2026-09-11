@@ -1,0 +1,235 @@
+<!doctype html>
+<html lang="cs">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Moje nápoje</title>
+<style>
+*{box-sizing:border-box}
+body{margin:0;background:#f4f6f8;color:#172033;font-family:Arial,sans-serif}
+.wrap{max-width:1180px;margin:auto;padding:36px 20px 60px}
+h1{margin:0 0 8px;font-size:38px}
+.lead{margin:0 0 34px;color:#637083}
+h2{margin:34px 0 16px;font-size:24px}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(235px,1fr));gap:18px}
+.card{background:#fff;border:1px solid #e5e9ef;border-radius:18px;overflow:hidden;box-shadow:0 6px 18px rgba(20,35,60,.06);display:flex;flex-direction:column}
+.photo{height:220px;padding:18px;display:flex;align-items:center;justify-content:center;background:#fff}
+.photo img{max-width:100%;max-height:100%;object-fit:contain}
+.content{padding:18px;display:flex;flex-direction:column;flex:1}
+.name{font-size:18px;font-weight:700;line-height:1.3;margin-bottom:6px}
+.meta{font-size:13px;color:#7a8595;margin-bottom:12px}
+.price{font-size:24px;font-weight:800;margin-bottom:3px}
+.per-liter{font-size:13px;color:#7a8595;margin-bottom:15px}
+.rating-title{font-size:12px;color:#7a8595;margin-bottom:4px}
+.stars{display:flex;gap:3px;margin-bottom:16px}
+.star{border:0;background:transparent;padding:0;font-size:29px;line-height:1;color:#ccd2da;cursor:pointer;transition:transform .1s,color .12s}
+.star:hover{transform:scale(1.08)}
+.star.on{color:#f5b301}
+.button{margin-top:auto;display:block;text-align:center;text-decoration:none;background:#162238;color:#fff;border-radius:10px;padding:11px 14px;font-weight:700}
+.button:hover{background:#263754}
+.note{margin-top:34px;padding:15px 17px;border-radius:12px;background:#fff8df;color:#67551a;font-size:13px;line-height:1.45;border:1px solid #f0df9d}
+@media(max-width:560px){h1{font-size:30px}.wrap{padding:26px 14px 45px}.photo{height:190px}}
+</style>
+
+<script>
+/* ============================================================
+   CENY – TADY STAČÍ RUČNĚ MĚNIT ČÁSTKY
+   Číslo je cena celého balení v Kč.
+   ============================================================ */
+const CENY = {
+  "relax-mango": 49.90,
+  "rauch-pomeranc": 49.90,
+  "rauch-jahoda": 90.00,
+  "pfanner-pomeranc": 89.90,
+  "pfanner-boruvka": 67.90,
+  "pfanner-jahoda": 67.90,
+  "mattoni-esence-pomeranc": 20.00,
+  "rajec-mata": 24.90,
+  "rajec-materidouska": 24.90,
+  "rajec-brusinka": 24.90,
+  "kofola-original": 36.90
+};
+</script>
+</head>
+<body>
+<div class="wrap">
+  <h1>Moje nápoje</h1>
+  <p class="lead">Web mých oblíbených nápojů. Ceny jsou POUZE ORIENTAČNÍ.</p>
+
+  <h2>Džusy a ovocné nápoje</h2>
+  <section class="grid">
+    <article class="card" data-price-key="relax-mango" data-objem="1">
+      <div class="photo"><img src="https://cdn.globusonline.cz/content/images/product/relax-exotika-mango-1-l_9477.jpg" alt="Relax Exotika mango 1 l"></div>
+      <div class="content">
+        <div class="name">Relax Exotika Mango</div>
+        <div class="meta">1 l · mango, jablko, pomeranč, citron</div>
+        <div class="price"></div><div class="per-liter"></div>
+        <div class="rating-title">Jak mi chutná</div><div class="stars"></div>
+        <a class="button" href="https://globusonline.cz/p/relax-exotika-mango-1-l" target="_blank" rel="noopener">Otevřít v Globus Online</a>
+      </div>
+    </article>
+
+    <article class="card" data-price-key="rauch-pomeranc" data-objem="1">
+      <div class="photo"><img src="https://gapi.globus.cz/OnlineAsset/3/asset?assetID=ded0f652-4c2f-4a1c-a3ce-c168de1c8470&type=1" alt="Rauch Happy Day Pomeranč 100%"></div>
+      <div class="content">
+        <div class="name">Rauch Happy Day Pomeranč 100%</div>
+        <div class="meta">1 l · pomeranč</div>
+        <div class="price"></div><div class="per-liter"></div>
+        <div class="rating-title">Jak mi chutná</div><div class="stars"></div>
+        <a class="button" href="https://www.globus.cz/globus/hypermarket/cela-nabidka/p/rauch-happy-day-pomeranc-100-dzus-1-l-00475162005" target="_blank" rel="noopener">Otevřít v Globusu</a>
+      </div>
+    </article>
+
+    <article class="card" data-price-key="rauch-jahoda" data-objem="1">
+      <div class="photo"><img src="https://pi.nice-cdn.com/upload/image/product/large/default/rauch-happy-day-jahoda-12-x-1-l-1191324-cs.jpg" alt="Rauch Happy Day Jahoda"></div>
+      <div class="content">
+        <div class="name">Rauch Happy Day Jahoda</div>
+        <div class="meta">1 l · jahoda</div>
+        <div class="price"></div><div class="per-liter"></div>
+        <div class="rating-title">Jak mi chutná</div><div class="stars"></div>
+        <a class="button" href="https://www.globus.cz/globus/hypermarket/cela-nabidka?search=Rauch%20Happy%20Day%20Jahoda" target="_blank" rel="noopener">Hledat v Globusu</a>
+      </div>
+    </article>
+
+    <article class="card" data-price-key="pfanner-pomeranc" data-objem="1">
+      <div class="photo"><img src="https://gapi.globus.cz/OnlineAsset/3/asset?assetID=48007308-37ff-405c-84fb-0029eb9455a1&type=1" alt="Pfanner Pomeranč 100%"></div>
+      <div class="content">
+        <div class="name">Pfanner Pomeranč 100%</div>
+        <div class="meta">1 l · pomeranč</div>
+        <div class="price"></div><div class="per-liter"></div>
+        <div class="rating-title">Jak mi chutná</div><div class="stars"></div>
+        <a class="button" href="https://www.globus.cz/globus/hypermarket/cela-nabidka/p/pfanner-pomeranc-100-1-l-00074353002" target="_blank" rel="noopener">Otevřít v Globusu</a>
+      </div>
+    </article>
+
+    <article class="card" data-price-key="pfanner-boruvka" data-objem="1">
+      <div class="photo"><img src="https://gapi.globus.cz/OnlineAsset/3/asset?assetID=73887607-2066-4d97-a294-72b048700f19&type=1" alt="Pfanner Borůvka 20%"></div>
+      <div class="content">
+        <div class="name">Pfanner Borůvka 20%</div>
+        <div class="meta">1 l · borůvka</div>
+        <div class="price"></div><div class="per-liter"></div>
+        <div class="rating-title">Jak mi chutná</div><div class="stars"></div>
+        <a class="button" href="https://www.globus.cz/globus/hypermarket/cela-nabidka/p/pfanner-boruvka-20-1-l-00659790000" target="_blank" rel="noopener">Otevřít v Globusu</a>
+      </div>
+    </article>
+
+    <article class="card" data-price-key="pfanner-jahoda" data-objem="1">
+      <div class="photo"><img src="https://gapi.globus.cz/OnlineAsset/3/asset?assetID=813deccc-13ea-4f25-8a94-367c575870fc&type=1" alt="Pfanner Jahoda 30%"></div>
+      <div class="content">
+        <div class="name">Pfanner Jahoda 30%</div>
+        <div class="meta">1 l · jahoda</div>
+        <div class="price"></div><div class="per-liter"></div>
+        <div class="rating-title">Jak mi chutná</div><div class="stars"></div>
+        <a class="button" href="https://www.globus.cz/globus/hypermarket/cela-nabidka/p/pfanner-jahoda-30-1-l-00574190008" target="_blank" rel="noopener">Otevřít v Globusu</a>
+      </div>
+    </article>
+  </section>
+
+  <h2>Minerálky a další pití</h2>
+  <section class="grid">
+    <article class="card" data-price-key="mattoni-esence-pomeranc" data-objem="1.5">
+      <div class="photo"><img src="https://www.drmax.cz/_i/1566775922.webp?fit=contain&amp;format=webp&amp;path=https%3A%2F%2Fbackend.drmax.cz%2Fmedia%2Fcatalog%2Fproduct%2Fm%2Fa%2Fmattoni_esence_pomeran_bez_cukru_1.5l_8594001027293.jpg" alt="Mattoni Esence Pomeranč"></div>
+      <div class="content">
+        <div class="name">Mattoni Esence Pomeranč</div>
+        <div class="meta">1,5 l · pomeranč · bez cukru</div>
+        <div class="price"></div><div class="per-liter"></div>
+        <div class="rating-title">Jak mi chutná</div><div class="stars"></div>
+        <a class="button" href="https://www.globus.cz/globus/hypermarket/cela-nabidka?search=Mattoni%20Esence%20pomeran%C4%8D" target="_blank" rel="noopener">Hledat v Globusu</a>
+      </div>
+    </article>
+
+    <article class="card" data-price-key="rajec-mata" data-objem="1.5">
+      <div class="photo"><img src="https://digitalcontent.api.tesco.com/v2/media/ghs/2cfb6825-dedb-4ed6-b960-591550233a0c/973077fc-7e76-4ef8-bea2-67f171217d15_467106249.jpeg?h=960&amp;w=960" alt="Rajec Máta"></div>
+      <div class="content">
+        <div class="name">Rajec Máta</div>
+        <div class="meta">1,5 l · máta</div>
+        <div class="price"></div><div class="per-liter"></div>
+        <div class="rating-title">Jak mi chutná</div><div class="stars"></div>
+        <a class="button" href="https://www.globus.cz/globus/hypermarket/cela-nabidka?search=Rajec%20M%C3%A1ta" target="_blank" rel="noopener">Hledat v Globusu</a>
+      </div>
+    </article>
+
+    <article class="card" data-price-key="rajec-materidouska" data-objem="1.5">
+      <div class="photo"><img src="https://gapi.globus.cz/OnlineAsset/3/asset?assetID=4ab32a1c-6926-468c-b73f-da1760f9b9d6&type=1" alt="Rajec Mateřídouška"></div>
+      <div class="content">
+        <div class="name">Rajec Mateřídouška</div>
+        <div class="meta">1,5 l · mateřídouška</div>
+        <div class="price"></div><div class="per-liter"></div>
+        <div class="rating-title">Jak mi chutná</div><div class="stars"></div>
+        <a class="button" href="https://www.globus.cz/globus/hypermarket/cela-nabidka/p/rajec-bylinka-materidouska-nesycena-1-5-l-00525919009" target="_blank" rel="noopener">Otevřít v Globusu</a>
+      </div>
+    </article>
+
+    <article class="card" data-price-key="rajec-brusinka" data-objem="1.5">
+      <div class="photo"><img src="https://digitalcontent.api.tesco.com/v2/media/ghs/12e31470-6506-4a1e-a788-68b48581cf80/a30a8ec3-0370-4a70-a43b-274ebb04f37b_2075269480.jpeg?h=960&amp;w=960" alt="Rajec Brusinka"></div>
+      <div class="content">
+        <div class="name">Rajec Brusinka</div>
+        <div class="meta">1,5 l · brusinka</div>
+        <div class="price"></div><div class="per-liter"></div>
+        <div class="rating-title">Jak mi chutná</div><div class="stars"></div>
+        <a class="button" href="https://www.globus.cz/globus/hypermarket/cela-nabidka?search=Rajec%20Brusinka" target="_blank" rel="noopener">Hledat v Globusu</a>
+      </div>
+    </article>
+
+    <article class="card" data-price-key="kofola-original" data-objem="1.5">
+      <div class="photo"><img src="https://gapi.globus.cz/OnlineAsset/3/asset?assetID=f3214e9a-2ae5-4012-9639-f765c7c5ab94&type=1" alt="Kofola Original"></div>
+      <div class="content">
+        <div class="name">Kofola Original</div>
+        <div class="meta">1,5 l · cola</div>
+        <div class="price"></div><div class="per-liter"></div>
+        <div class="rating-title">Jak mi chutná</div><div class="stars"></div>
+        <a class="button" href="https://www.globus.cz/globus/hypermarket/cela-nabidka/p/kofola-original-1-5-l-01139281001" target="_blank" rel="noopener">Otevřít v Globusu</a>
+      </div>
+    </article>
+  </section>
+
+  <div class="note"></div>
+</div>
+
+<script>
+function formatPrice(value){return value.toFixed(2).replace('.', ',')}
+
+document.querySelectorAll('.card').forEach((card) => {
+  const priceKey = card.dataset.priceKey;
+  const objem = Number(card.dataset.objem);
+  const price = Number(CENY[priceKey]);
+  const priceBox = card.querySelector('.price');
+  const perLiterBox = card.querySelector('.per-liter');
+
+  if (Number.isFinite(price)) {
+    priceBox.textContent = formatPrice(price) + ' Kč';
+    perLiterBox.textContent = formatPrice(price / objem) + ' Kč/l';
+  } else {
+    priceBox.textContent = 'Cena nedoplněna';
+    perLiterBox.textContent = '';
+  }
+
+  const name = card.querySelector('.name').textContent.trim();
+  const ratingKey = 'napoj-rating-' + name;
+  const saved = Number(localStorage.getItem(ratingKey) || 0);
+  const starsBox = card.querySelector('.stars');
+
+  for (let i = 1; i <= 5; i++) {
+    const star = document.createElement('button');
+    star.className = 'star';
+    star.type = 'button';
+    star.setAttribute('aria-label', i + ' z 5');
+    star.textContent = '★';
+
+    function paint(value){star.classList.toggle('on', i <= value)}
+    paint(saved);
+
+    star.addEventListener('click', () => {
+      const current = Number(localStorage.getItem(ratingKey) || 0);
+      const next = current === i ? 0 : i;
+      if (next === 0) localStorage.removeItem(ratingKey);
+      else localStorage.setItem(ratingKey, String(next));
+      starsBox.querySelectorAll('.star').forEach((s, index) => s.classList.toggle('on', index < next));
+    });
+
+    starsBox.appendChild(star);
+  }
+});
+</script>
+</body>
+</html>
