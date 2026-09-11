@@ -22,12 +22,11 @@ h2{margin:34px 0 16px;font-size:24px}
 .per-liter{font-size:13px;color:#7a8595;margin-bottom:15px}
 .rating-title{font-size:12px;color:#7a8595;margin-bottom:4px}
 .stars{display:flex;gap:3px;margin-bottom:16px}
-.star{border:0;background:transparent;padding:0;font-size:29px;line-height:1;color:#ccd2da;cursor:pointer;transition:transform .1s,color .12s}
+.star{position:relative;border:0;background:transparent;padding:0;font-size:29px;line-height:1;color:#ccd2da;cursor:pointer;transition:transform .1s}
+.star::before{content:"★";position:absolute;left:0;top:0;width:var(--fill,0%);height:100%;overflow:hidden;white-space:nowrap;color:#f5b301;pointer-events:none}
 .star:hover{transform:scale(1.08)}
-.star.on{color:#f5b301}
 .button{margin-top:auto;display:block;text-align:center;text-decoration:none;background:#162238;color:#fff;border-radius:10px;padding:11px 14px;font-weight:700}
 .button:hover{background:#263754}
-.note{margin-top:34px;padding:15px 17px;border-radius:12px;background:#fff8df;color:#67551a;font-size:13px;line-height:1.45;border:1px solid #f0df9d}
 @media(max-width:560px){h1{font-size:30px}.wrap{padding:26px 14px 45px}.photo{height:190px}}
 </style>
 
@@ -54,7 +53,7 @@ const CENY = {
 <body>
 <div class="wrap">
   <h1>Moje nápoje</h1>
-  <p class="lead">Web mých oblíbených nápojů. Ceny jsou POUZE ORIENTAČNÍ.</p>
+  <p class="lead">Web mých oblíbených nápojů. Ceny jsou pouze orientační.</p>
 
   <h2>Džusy a ovocné nápoje</h2>
   <section class="grid">
@@ -65,7 +64,7 @@ const CENY = {
         <div class="meta">1 l · mango, jablko, pomeranč, citron</div>
         <div class="price"></div><div class="per-liter"></div>
         <div class="rating-title">Jak mi chutná</div><div class="stars"></div>
-        <a class="button" href="https://globusonline.cz/p/relax-exotika-mango-1-l" target="_blank" rel="noopener">Otevřít v Globus Online</a>
+        <a class="button" href="https://globusonline.cz/p/relax-exotika-mango-1-l" target="_blank" rel="noopener">Otevřít v Globusu</a>
       </div>
     </article>
 
@@ -87,7 +86,7 @@ const CENY = {
         <div class="meta">1 l · jahoda</div>
         <div class="price"></div><div class="per-liter"></div>
         <div class="rating-title">Jak mi chutná</div><div class="stars"></div>
-        <a class="button" href="https://www.globus.cz/globus/hypermarket/cela-nabidka?search=Rauch%20Happy%20Day%20Jahoda" target="_blank" rel="noopener">Hledat v Globusu</a>
+        <a class="button" href="https://www.globus.cz/globus/hypermarket/cela-nabidka?search=Rauch%20Happy%20Day%20Jahoda" target="_blank" rel="noopener">Otevřít v Globusu</a>
       </div>
     </article>
 
@@ -134,7 +133,7 @@ const CENY = {
         <div class="meta">1,5 l · pomeranč · bez cukru</div>
         <div class="price"></div><div class="per-liter"></div>
         <div class="rating-title">Jak mi chutná</div><div class="stars"></div>
-        <a class="button" href="https://www.globus.cz/globus/hypermarket/cela-nabidka?search=Mattoni%20Esence%20pomeran%C4%8D" target="_blank" rel="noopener">Hledat v Globusu</a>
+        <a class="button" href="https://www.globus.cz/globus/hypermarket/cela-nabidka?search=Mattoni%20Esence%20pomeran%C4%8D" target="_blank" rel="noopener">Otevřít v Globusu</a>
       </div>
     </article>
 
@@ -145,7 +144,7 @@ const CENY = {
         <div class="meta">1,5 l · máta</div>
         <div class="price"></div><div class="per-liter"></div>
         <div class="rating-title">Jak mi chutná</div><div class="stars"></div>
-        <a class="button" href="https://www.globus.cz/globus/hypermarket/cela-nabidka?search=Rajec%20M%C3%A1ta" target="_blank" rel="noopener">Hledat v Globusu</a>
+        <a class="button" href="https://www.globus.cz/globus/hypermarket/cela-nabidka?search=Rajec%20M%C3%A1ta" target="_blank" rel="noopener">Otevřít v Globusu</a>
       </div>
     </article>
 
@@ -167,7 +166,7 @@ const CENY = {
         <div class="meta">1,5 l · brusinka</div>
         <div class="price"></div><div class="per-liter"></div>
         <div class="rating-title">Jak mi chutná</div><div class="stars"></div>
-        <a class="button" href="https://www.globus.cz/globus/hypermarket/cela-nabidka?search=Rajec%20Brusinka" target="_blank" rel="noopener">Hledat v Globusu</a>
+        <a class="button" href="https://www.globus.cz/globus/hypermarket/cela-nabidka?search=Rajec%20Brusinka" target="_blank" rel="noopener">Otevřít v Globusu</a>
       </div>
     </article>
 
@@ -182,8 +181,6 @@ const CENY = {
       </div>
     </article>
   </section>
-
-  <div class="note"></div>
 </div>
 
 <script>
@@ -209,26 +206,37 @@ document.querySelectorAll('.card').forEach((card) => {
   const saved = Number(localStorage.getItem(ratingKey) || 0);
   const starsBox = card.querySelector('.stars');
 
+  function paintRating(value) {
+    starsBox.querySelectorAll('.star').forEach((star, index) => {
+      const fill = Math.max(0, Math.min(1, value - index)) * 100;
+      star.style.setProperty('--fill', fill + '%');
+    });
+  }
+
   for (let i = 1; i <= 5; i++) {
     const star = document.createElement('button');
     star.className = 'star';
     star.type = 'button';
-    star.setAttribute('aria-label', i + ' z 5');
+    star.setAttribute('aria-label', 'Nastavit hodnocení');
     star.textContent = '★';
 
-    function paint(value){star.classList.toggle('on', i <= value)}
-    paint(saved);
-
-    star.addEventListener('click', () => {
+    star.addEventListener('click', (event) => {
+      const rect = star.getBoundingClientRect();
+      const half = event.clientX - rect.left < rect.width / 2;
+      const clickedValue = (i - 1) + (half ? 0.5 : 1);
       const current = Number(localStorage.getItem(ratingKey) || 0);
-      const next = current === i ? 0 : i;
+      const next = current === clickedValue ? 0 : clickedValue;
+
       if (next === 0) localStorage.removeItem(ratingKey);
       else localStorage.setItem(ratingKey, String(next));
-      starsBox.querySelectorAll('.star').forEach((s, index) => s.classList.toggle('on', index < next));
+
+      paintRating(next);
     });
 
     starsBox.appendChild(star);
   }
+
+  paintRating(saved);
 });
 </script>
 </body>
